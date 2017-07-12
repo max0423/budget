@@ -13,6 +13,7 @@ import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 
 import { CommandBar } from 'office-ui-fabric-react/lib/CommandBar';
+//import { itemsNonFocusable, farItemsNonFocusable } from './data-nonFocusable';
 
 const { Row } = ReactDataGrid;
 
@@ -844,6 +845,13 @@ convertArrayOfObjectsToCSV(args) {
       return amount;
   },
   
+
+   onRowSelect(rows) {
+
+     debugger;
+      alert(rows);
+  },
+
   sumByYear(rows){
         rows.forEach((element,index) => {
         rows[index]['Year'] = this.sumByRow(rows[index]);
@@ -1910,10 +1918,7 @@ handleGridRowsUpdated110(){},
   },
 
 
-
-
-
-  render() {
+ render() {
 
     
  function onSelectEvent(event){
@@ -1926,9 +1931,19 @@ handleGridRowsUpdated110(){},
           
           <span ref ="mybudget" onClick={function(){alert('ppp')}}>My Budget</span></div>
 
+<div>
 
+    <button name="Edit" className="ms-CommandBarItem-link itemLink_ceb80f25" onClick={onSelectEvent.bind(this)} style={{float:"left"}}>
+      <i className="ms-Icon ms-Icon--Download ms-CommandBarItem-icon  ms-CommandBarItem-iconColor"></i>
+        <span className="ms-CommandBarItem-commandText itemCommandText_ceb80f25">Download</span>
+    </button>
+    <button name="Edit1" className="ms-CommandBarItem-link itemLink_ceb80f25" style={{float:"left"}}>
+    
+        <span className="ms-CommandBarItem-commandText itemCommandText_ceb80f25">Insert New Row</span>
+    </button>
 
-        
+</div>
+
           <ReactDataGrid
               ref={ node => this.grid = node }
               enableCellSelect={true}
@@ -1945,7 +1960,9 @@ handleGridRowsUpdated110(){},
             rowGetter={this.rowGetter}
             rowsCount={this.state.rows.length}
             minHeight={230}
+          // enableRowSelect="multi"
             /*toolbar={<button  onClick={this.handleAddRow.bind(this.grid1)}>Add</button>}*/
+           onRowSelect = {this.onRowSelect}
             onCellSelected={this.onCellSelected}
             onGridRowsUpdated={this.handleGridRowsUpdated}
             />
@@ -2084,7 +2101,7 @@ handleGridRowsUpdated110(){},
           
 
 
-        <a href='#' onClick={onSelectEvent.bind(this)} >download</a>
+        
     </div>);
   }
 });
