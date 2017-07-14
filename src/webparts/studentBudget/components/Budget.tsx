@@ -707,18 +707,18 @@ createTable(firstColumn, columns){
     var items = rows.slice(0,length-1);
     this.sum(items, 'Jan' );
 
-    _rows[0].Jan  =   this.sum(items, 'Jan' ) -result.Jan;
-    _rows[0].Feb  =   this.sum(items, 'Feb' ) -result.Feb;
-    _rows[0].Mar  =   this.sum(items, 'Mar' ) -result.Mar;
-    _rows[0].Apr  = this.sum(items, 'Apr' ) -result.Apr;
-    _rows[0].May  = this.sum(items, 'May' ) -result.May;
-    _rows[0].June  = this.sum(items, 'June' ) -result.June;
-    _rows[0].July  = this.sum(items, 'July' ) -result.July;
-    _rows[0].Aug  =   this.sum(items, 'Aug' ) -result.Aug;
-    _rows[0].Sep  = this.sum(items, 'Sep' ) -result.Sep;
-    _rows[0].Oct  =  this.sum(items, 'Oct' ) -result.Oct;
-    _rows[0].Nov  = this.sum(items, 'Nov' ) -result.Nov;
-    _rows[0].Dec  = this.sum(items, 'Dec' ) -result.Dec;
+    _rows[0].Jan   =  this.sum(items, 'Jan' ) -result.Jan;
+    _rows[0].Feb   =  this.sum(items, 'Feb' ) -result.Feb;
+    _rows[0].Mar   =  this.sum(items, 'Mar' ) -result.Mar;
+    _rows[0].Apr   =  this.sum(items, 'Apr' ) -result.Apr;
+    _rows[0].May   =  this.sum(items, 'May' ) -result.May;
+    _rows[0].June  =  this.sum(items, 'June' ) -result.June;
+    _rows[0].July  =  this.sum(items, 'July' ) -result.July;
+    _rows[0].Aug   =  this.sum(items, 'Aug' ) -result.Aug;
+    _rows[0].Sep   =  this.sum(items, 'Sep' ) -result.Sep;
+    _rows[0].Oct   =  this.sum(items, 'Oct' ) -result.Oct;
+    _rows[0].Nov   =  this.sum(items, 'Nov' ) -result.Nov;
+    _rows[0].Dec   =  this.sum(items, 'Dec' ) -result.Dec;
 
 
     var Jan = _rows[0].Jan;
@@ -729,18 +729,12 @@ createTable(firstColumn, columns){
     var June =  _rows[0].June + May;
     var July =  _rows[0].July + June;
     var Aug =  _rows[0].Aug + July;
-
-
-
     var Sep =  _rows[0].Sep + Aug;
     var Oct =  _rows[0].Oct + Sep;
     var Nov =  _rows[0].Nov + Oct;
     var Dec =  _rows[0].Dec + Nov;
 
-
-
-
-      const newRow99 = {
+    const newRow = {
             MonthlyCash:  "Cumulative cash flow",
             Jan: Jan,
             Feb:  Feb,
@@ -755,7 +749,7 @@ createTable(firstColumn, columns){
             Nov: Nov,
             Dec: Dec
       };
-    this.state.cashFlowRows[1] = newRow99
+    this.state.cashFlowRows[1] = newRow
     return this.state.cashFlowRows[i];
   },
 
@@ -794,22 +788,17 @@ createTable(firstColumn, columns){
 
   
  rowGetterTotalExpenses(i) {
-
-   debugger;
-
-  var result = this.sumBySections(this.state.rows,this.state.monthlyExpenseRows, this.state.housingRows, this.state.insurancerows,this.state.utilitiesRows, this.state.loanPaymentRows,
-  this.state.transportationRows,this.state.booksSuppliesRows, this.state.discretionaryRows, this.state.otherExpensesRows);
-
-  //this.setState({totalExpensesRows: result});
- 
+    var result = this.sumBySections(this.state.rows,this.state.monthlyExpenseRows, this.state.housingRows, this.state.insurancerows,this.state.utilitiesRows, this.state.loanPaymentRows,
+    this.state.transportationRows,this.state.booksSuppliesRows, this.state.discretionaryRows, this.state.otherExpensesRows);
     return result;
-  },  
+  },
+
   rowGetter(i) {
     return this.state.rows[i];
   },
 
 
-handleAddRow({ newRowIndex }) {
+  handleAddRow({ newRowIndex }) {
 
     debugger;
     const newRow = { Jan: '', Feb: '', Mar: '', Apr: '', May: '', June: '', July: '', Aug: '', Sep: '', Oct: '', Nov: '', Dec: ''};
@@ -859,11 +848,11 @@ handleAddRow({ newRowIndex }) {
     var Feb = _rows[0].Feb + _rows[1].Jan;
     var Mar =  _rows[0].Mar + _rows[1].Feb;
 
-    const newRow99 = {
+    var newRow = {
             MonthlyCash:  "Cumulative cash flow",
-            Jan: Jan,
-            Feb: Feb,
-            Mar: Mar,
+            Jan: 0,
+            Feb: 0,
+            Mar: 0,
             Apr: 0,
             May:  0,
             June: 0,
@@ -875,25 +864,25 @@ handleAddRow({ newRowIndex }) {
             Dec: 0
       };
 
-  _rows[1] = newRow99
+  _rows[1] = newRow;
   debugger;
 
-  var ok = rows.slice(0,length-1);
-      var jan = this.sum(ok, 'Jan' );
-      var mar = this.sum(ok, 'Mar' );
-      var feb = this.sum(ok, 'Feb' );
-      var mar = this.sum(ok, 'Mar' );
-      var apr = this.sum(ok, 'Apr' );
-      var may = this.sum(ok, 'May' );
-      var june = this.sum(ok, 'June' );
-      var july = this.sum(ok, 'July' );
-      var aug = this.sum(ok, 'Aug' );
-      var sep = this.sum(ok, 'Sep' );
-      var oct = this.sum(ok, 'Oct' );
-      var nov = this.sum(ok, 'Nov' );
-      var dec = this.sum(ok, 'Dec' );
+  var items = rows.slice(0,length-1);
+      var jan = this.sum(items, 'Jan' );
+      var mar = this.sum(items, 'Mar' );
+      var feb = this.sum(items, 'Feb' );
+      var mar = this.sum(items, 'Mar' );
+      var apr = this.sum(items, 'Apr' );
+      var may = this.sum(items, 'May' );
+      var june = this.sum(items, 'June' );
+      var july = this.sum(items, 'July' );
+      var aug = this.sum(items, 'Aug' );
+      var sep = this.sum(items, 'Sep' );
+      var oct = this.sum(items, 'Oct' );
+      var nov = this.sum(items, 'Nov' );
+      var dec = this.sum(items, 'Dec' );
 
-        const newRow = {
+      var  _row = {
             MonthlyIncome:  "TOTAL INCOME",
             Jan: jan,
             Feb: feb,
@@ -909,16 +898,11 @@ handleAddRow({ newRowIndex }) {
             Dec: dec
       };
 
-      rows[length -1] = newRow;
-
-
+    rows[length -1] = _row;
     this.sumByYear(rows);
     this.setState({ rows: rows });
-
     this.setState({ cashFlowRows: _rows });
-
-
-  },
+},
 
   createSummaryRow(items,column){
     var jan = this.sum(items, 'Jan' );
@@ -956,14 +940,12 @@ handleAddRow({ newRowIndex }) {
             Nov: nov,
             Dec: dec
       };
-
-
   return newRow
 },
 
- handleGridRowsUpdatedMonthlyExpense({ fromRow, toRow, updated }) {
+  handleGridRowsUpdatedMonthlyExpense({ fromRow, toRow, updated }) {
 
-  debugger;
+    debugger;
     let monthlyExpenseRows = this.state.monthlyExpenseRows.slice();
     let length = this.state.monthlyExpenseRows.length;
 
@@ -1027,23 +1009,7 @@ handleAddRow({ newRowIndex }) {
     }
    
       var items = housingRows.slice(1,length);
-      // var jan = this.sum(items, 'Jan' );
-      // var mar = this.sum(items, 'Mar' );
-      // var feb = this.sum(items, 'Feb' );
-      // var mar = this.sum(items, 'Mar' );
-      // var apr = this.sum(items, 'Apr' );
-      // var may = this.sum(items, 'May' );
-      // var june = this.sum(items, 'June' );
-      // var july = this.sum(items, 'July' );
-      // var aug = this.sum(items, 'Aug' );
-      // var sep = this.sum(items, 'Sep' );
-      // var oct = this.sum(items, 'Oct' );
-      // var nov = this.sum(items, 'Nov' );
-      // var dec = this.sum(items, 'Dec' );
-      // var newRow = this.createNewRow("Housing", jan, feb, mar, apr, may, june, july, aug, sep, oct, nov, dec);
-
-
-        var _row = this.createSummaryRow(items, "Housing");
+      var _row = this.createSummaryRow(items, "Housing");
     //rows[0] = _row;
 
       housingRows[0] = _row;
@@ -1217,10 +1183,6 @@ handleAddRow({ newRowIndex }) {
 
   },
 
-
-
-
-  
   handleGridRowsUpdatedOtherExpenses({ fromRow, toRow, updated }) {
     let rows = this.state.otherExpensesRows.slice();
     let length = this.state.otherExpensesRows.length;
@@ -1376,7 +1338,7 @@ handleAddRow({ newRowIndex }) {
               columns={ this._transportationColumns  }
               rowGetter={this.rowGetterTransportation}
               rowsCount={this.state.transportationRows.length}
-              minHeight={210}
+              minHeight={310}
               onGridRowsUpdated={this.handleGridRowsUpdatedTransportation} />
 
             
